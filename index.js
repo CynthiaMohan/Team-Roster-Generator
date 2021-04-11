@@ -12,6 +12,7 @@ const Intern = require('./lib/Intern');
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
+
 const promptTeamName = () => {
     return inquirer.prompt([
         {
@@ -20,7 +21,11 @@ const promptTeamName = () => {
             message: 'What is the team name?'
         },
     ]);
+
 };
+
+
+
 const addNewEmp = ({ TeamName }) => {
     console.log(`
 ====================================
@@ -118,10 +123,19 @@ Add a New Team Member to ${TeamName}
 
 promptTeamName()
     .then(addNewEmp)
-    .then(function buildTeam() {
-        if (!fs.existsSync(OUTPUT_DIR)) {
-            fs.mkdirSync(OUTPUT_DIR)
-        }
-        fs.writeFileSync(outputPath, generatePage(emp), "UTF-8")
+    .then(data => {
+        console.log(data);
+        const pageHTML = generatePage(data);
+        fs.writeFile('./dist/index.html', pageHTML, err => {
+            if (err) {
+                throw new Error(err);
+            }
+            console.log('Team Roster Generated');
+        })
     })
+    .catch(err => {
+        if (err) {
+            console.log(err);
+        }
+    });
 

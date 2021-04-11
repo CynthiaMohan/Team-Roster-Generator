@@ -1,4 +1,8 @@
-const generateCard = empArr => {
+
+
+const generateCard = (empArr) => {
+
+    console.log(`Employee array is ${empArr}`);
     return `
     <section class="col">
         <div class="card" style="width: 18rem;">
@@ -16,7 +20,8 @@ const generateCard = empArr => {
 
 module.exports = templateData => {
     const { TeamName, ...employeeData } = templateData;
-
+    // console.log(`template data is ${templateData}`);
+    console.log(`team name is ${TeamName}`);
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +36,8 @@ module.exports = templateData => {
 <div class="container">
 <div class="row">${TeamName}</div>
 <div class="row">
-    ${generateCard(employeeData)}
+
+    // ${generateCard(templateData)}
 </div>
 </div>
 </body>
