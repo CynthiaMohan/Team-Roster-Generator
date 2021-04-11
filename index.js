@@ -93,18 +93,27 @@ Add a New Team Member to ${TeamName}
                     }
                 ])
                 .then(function ({ details, ConfirmAddNewEmp }) {
-                    // console.log(EmpName, Designation, Id, email, details, ConfirmAddNewEmp);
+                    console.log(TeamName, EmpName, Designation, Id, email, details, ConfirmAddNewEmp);
+                    if (emp.length === 0) {
+                        emp.push(TeamName);
+                    }
                     let newEmp;
-                    if (Designation.toLowerCase() === 'manager') {
+                    if (Designation === 'Manager') {
                         console.log('creating new manager');
 
                         newEmp = new Manager(EmpName, Id, email, details);
                         emp.push(newEmp);
                     }
-                    if (Designation.toLowerCase() === 'engineer') {
+                    if (Designation === 'Engineer') {
                         console.log('creating new engineer');
 
                         newEmp = new Engineer(EmpName, Id, email, details);
+                        emp.push(newEmp);
+                    }
+                    if (Designation === 'Intern') {
+                        console.log('creating new intern');
+
+                        newEmp = new Intern(EmpName, Id, email, details);
                         emp.push(newEmp);
                     }
                     //Do you want to add a new team member
@@ -120,18 +129,16 @@ Add a New Team Member to ${TeamName}
         })
 
 }
-
+module.exports = emp;
 promptTeamName()
     .then(addNewEmp)
-    .then(data => {
-        console.log(data);
-        const pageHTML = generatePage(data);
-        fs.writeFile('./dist/index.html', pageHTML, err => {
-            if (err) {
-                throw new Error(err);
-            }
-            console.log('Team Roster Generated');
-        })
+    .then(function buildTeam() {
+        if (!fs.existsSync(OUTPUT_DIR)) {
+            fs.mkdirSync(OUTPUT_DIR)
+        }
+        console.log("generating...");
+        const pageHTML = generatePage(emp)
+        fs.writeFileSync(outputPath, generatePage(emp), "UTF-8")
     })
     .catch(err => {
         if (err) {
