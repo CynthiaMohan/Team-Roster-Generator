@@ -93,25 +93,25 @@ Add a New Team Member to ${TeamName}
                     }
                 ])
                 .then(function ({ details, ConfirmAddNewEmp }) {
-                    console.log(TeamName, EmpName, Designation, Id, email, details, ConfirmAddNewEmp);
+                    // console.log(TeamName, EmpName, Designation, Id, email, details, ConfirmAddNewEmp);
                     if (emp.length === 0) {
                         emp.push(TeamName);
                     }
                     let newEmp;
                     if (Designation === 'Manager') {
-                        console.log('creating new manager');
+                        // console.log('creating new manager');
 
                         newEmp = new Manager(EmpName, Id, email, details);
                         emp.push(newEmp);
                     }
                     if (Designation === 'Engineer') {
-                        console.log('creating new engineer');
+                        // console.log('creating new engineer');
 
                         newEmp = new Engineer(EmpName, Id, email, details);
                         emp.push(newEmp);
                     }
                     if (Designation === 'Intern') {
-                        console.log('creating new intern');
+                        // console.log('creating new intern');
 
                         newEmp = new Intern(EmpName, Id, email, details);
                         emp.push(newEmp);
@@ -125,7 +125,7 @@ Add a New Team Member to ${TeamName}
                     }
 
                 })
-            console.log(emp);
+            // console.log(emp);
         })
 
 }
@@ -136,7 +136,7 @@ promptTeamName()
         if (!fs.existsSync(OUTPUT_DIR)) {
             fs.mkdirSync(OUTPUT_DIR)
         }
-        console.log("Team Roster is Complete. Please view it in ./dist/team.html");
+        console.log("\n Team Roster is Complete. Please view it in ./dist/team.html");
         const pageHTML = generatePage(emp)
         fs.writeFileSync(outputPath, pageHTML, "UTF-8")
     })
