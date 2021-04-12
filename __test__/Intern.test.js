@@ -7,3 +7,9 @@ describe('If a new Intern object is created', () => {
         expect(cynthia.school).toEqual(expect.any(String));
     })
 });
+describe("Function getdetails", () => {
+    it("Should get details via getdetails()", () => {
+        expect(cynthia.getdetails()).toEqual('UCBerkeley');
+        expect(cynthia.getdetails()).toEqual(expect.any(String));
+    })
+})

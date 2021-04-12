@@ -136,7 +136,7 @@ promptTeamName()
         if (!fs.existsSync(OUTPUT_DIR)) {
             fs.mkdirSync(OUTPUT_DIR)
         }
-        console.log("generating...");
+        console.log("Team Roster is Complete. Please view it in ./dist/team.html");
         const pageHTML = generatePage(emp)
         fs.writeFileSync(outputPath, pageHTML, "UTF-8")
     })

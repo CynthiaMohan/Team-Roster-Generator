@@ -17,3 +17,22 @@ describe("creates a new Employee object", () => {
         expect(cynthia.email).toEqual(expect.any(String));
     })
 });
+
+describe("Function getName", () => {
+    it("Should get a name via getName()", () => {
+        expect(cynthia.getName()).toEqual('Cynthia');
+        expect(cynthia.getName()).toEqual(expect.any(String));
+    })
+})
+describe("Function getId", () => {
+    it("Should get an Id via getId()", () => {
+        expect(cynthia.getId()).toEqual(1000);
+        expect(cynthia.getId()).toEqual(expect.any(Number));
+    })
+})
+describe("Function getEmail", () => {
+    it("Should get an Email via getEmail()", () => {
+        expect(cynthia.getEmail()).toEqual('cynthia@company.com');
+        expect(cynthia.getEmail()).toEqual(expect.any(String));
+    })
+})

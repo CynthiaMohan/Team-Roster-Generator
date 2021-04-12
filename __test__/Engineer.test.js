@@ -8,3 +8,10 @@ describe('Creates a new Engineer Object', () => {
         expect(cynthia.github).toEqual(expect.any(String));
     })
 });
+
+describe("Function getdetails", () => {
+    it("Should get details via getdetails()", () => {
+        expect(cynthia.getdetails()).toEqual('CynthiaMohan');
+        expect(cynthia.getdetails()).toEqual(expect.any(String));
+    })
+})

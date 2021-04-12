@@ -1,6 +1,3 @@
-// const Manager = require('../lib/Manager');
-// const Engineer = require('../lib/Engineer');
-// const Intern = require('../lib/Intern');
 let htmlContent = [];
 let des = '';
 let ref = '';
@@ -21,10 +18,10 @@ const renderCard = empArr => {
             ref = '#';
             break;
     }
-    // console.log(`Employee array is ${JSON.stringify(empArr)}`);
+
     return `
     <section class="col">
-        <div class="card" style="width: 18rem;">
+        <div class="card shadow p-3 mb-5" style="width: 18rem;">
             <div class="card-header bg-info">
                 <h5 class="card-title fs-3">${empArr.name}</h5>
                 <h6 class="card-subtitle mb-2 text-muted fs-4">${empArr.getRole()}</h6>
@@ -41,7 +38,7 @@ const renderCard = empArr => {
 
 const startPage = (templateData) => {
     const TeamName = templateData[0];
-    // console.log(`team name is ${TeamName}`);
+
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
