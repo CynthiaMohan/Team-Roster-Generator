@@ -4,16 +4,16 @@ const Intern = require('../lib/Intern');
 
 const renderCard = empArr => {
 
-    console.log(`Employee array is ${empArr}`);
+    console.log(`Employee array is ${JSON.stringify(empArr)}`);
     return `
     <section class="col">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">${EmpName}</h5>
+                <h5 class="card-title">${empArr.EmpName}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${empArr}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">${Id}</h6>
-                <a href="#" class="card-link">${email}</a>
-                <a href="#" class="card-link">${details}</a>
+                <h6 class="card-subtitle mb-2 text-muted">${empArr.Id}</h6>
+                <a href="#" class="card-link">${empArr.email}</a>
+                <a href="#" class="card-link">${empArr.details}</a>
             </div>
         </div>
     </section>
@@ -54,11 +54,11 @@ module.exports = templateData => {
 
     // console.log(`template data is ${templateData}`);
 
-    console.log(templateData);
+    console.log('array size is' + templateData.length);
     startPage(templateData);
     for (i = 1; i < templateData.length; i++) {
         // if (templateData[i]) {
-
+        console.log(templateData[i]);
         renderCard(templateData[i]);
         // }
     }

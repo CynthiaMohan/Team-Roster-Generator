@@ -138,7 +138,7 @@ promptTeamName()
         }
         console.log("generating...");
         const pageHTML = generatePage(emp)
-        fs.writeFileSync(outputPath, generatePage(emp), "UTF-8")
+        fs.writeFileSync(outputPath, pageHTML, "UTF-8")
     })
     .catch(err => {
         if (err) {
