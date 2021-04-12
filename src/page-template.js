@@ -1,21 +1,40 @@
-const Manager = require('../lib/Manager');
-const Engineer = require('../lib/Engineer');
-const Intern = require('../lib/Intern');
-
+// const Manager = require('../lib/Manager');
+// const Engineer = require('../lib/Engineer');
+// const Intern = require('../lib/Intern');
+let htmlContent = [];
+let des = '';
+let ref = '';
 const renderCard = empArr => {
+    switch (empArr.getRole()) {
+        case 'Manager':
+            des = 'Office Number';
+            ref = 'tel:+';
+            break;
 
-    console.log(`Employee array is ${JSON.stringify(empArr)}`);
+        case 'Engineer':
+            des = 'Github';
+            ref = 'https://github.com/';
+            break;
+
+        case 'Intern':
+            des = 'School';
+            ref = '#';
+            break;
+    }
+    // console.log(`Employee array is ${JSON.stringify(empArr)}`);
     return `
     <section class="col">
         <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">${empArr.EmpName}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${empArr}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">${empArr.Id}</h6>
-                <a href="#" class="card-link">${empArr.email}</a>
-                <a href="#" class="card-link">${empArr.details}</a>
+            <div class="card-header bg-info">
+                <h5 class="card-title fs-3">${empArr.name}</h5>
+                <h6 class="card-subtitle mb-2 text-muted fs-4">${empArr.getRole()}</h6>
             </div>
-        </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID :  ${empArr.id}</li>
+                <li class="list-group-item">Email :  <a href="mailto:${empArr.email}" class="card-link">${empArr.email}</a></li>
+                <li class="list-group-item">${des}  :  <a href="${ref}${empArr.getdetails()}" class="card-link">${empArr.getdetails()}</a></li>
+            </ul>
+        </div>  
     </section>
     `;
 };
@@ -35,7 +54,7 @@ const startPage = (templateData) => {
     </head>
     <body>
         <div class="container">
-            <h2 class="navbar-brand bg-danger text-center" href="#">${TeamName}</h2>
+            <h2 class="navbar-brand bg-danger text-center fs-1" href="#">${TeamName}</h2>
             <div class="row mt-5">`;
 }
 
@@ -48,19 +67,21 @@ const endPage = () => {
 </html > `;
 }
 
-module.exports = templateData => {
+module.exports = (templateData) => {
     // const role = templateData.getRole();
     // console.log(role);
 
     // console.log(`template data is ${templateData}`);
 
-    console.log('array size is' + templateData.length);
-    startPage(templateData);
+    // console.log('array size is' + templateData.length);
+    htmlContent.push(startPage(templateData));
     for (i = 1; i < templateData.length; i++) {
         // if (templateData[i]) {
         console.log(templateData[i]);
-        renderCard(templateData[i]);
+        htmlContent.push(renderCard(templateData[i]));
         // }
     }
-    endPage();
+    htmlContent.push(endPage());
+    return htmlContent.join('');
 }
+
