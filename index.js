@@ -54,7 +54,17 @@ Add a New Team Member to ${TeamName}
             {
                 type: 'input',
                 name: 'email',
-                message: 'What is the employees email?'
+                message: 'What is the employees email?',
+                validate: function (email) {
+                    // Regex mail check (return true if valid mail)
+                    if (/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(email)) {
+                        return true;
+                    }
+                    else {
+                        console.log("\tPlease enter a valid email address.");
+                        return false;
+                    }
+                }
             },
         ])
         //check desig- assign req new info
